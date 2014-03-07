@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+# Tutorial 1 - Q1
+#
+# Russel Balagon
+
+use strict;
+use warnings;
+
+main(@ARGV);
+
+sub main
+{
+    print("---------- Tute 1.1 ----------\n\n");
+    
+    my ($smallest, $largest) = small_large(-3, 2.5, 9, 0.76, 11);
+    
+    print("Smallest number: $smallest  | Largest Numbers: $largest \n\n\n");
+}
+
+sub small_large
+{
+    # ends the subroutine if no arguments passed
+    return if(!@_);
+    
+    # script ends with error if there are less than two numbers
+    die("Need two or more numbers") if(@_ < 2);
+    
+    my $largest = 0;
+    my $smallest = 0;
+    
+    # Iterates through the list of arguments and assigns largest and smallest 
+    # number to variables
+    foreach(@_)
+    {
+        $largest = $_ if($_ > $largest);
+        $smallest = $_ if($_ < $smallest);
+    }
+    
+    # returns an array with two elements
+    return my @result = ($smallest, $largest);
+}
