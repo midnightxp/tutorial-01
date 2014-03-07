@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # Tutorial 1 - Q1
-#
+##
 # Russel Balagon
 
 use strict;
