@@ -1,0 +1,69 @@
+#!/usr/bin/perl
+# Tutorial 1 - Q1
+#
+# Russel Balagon
+
+use strict;
+use warnings;
+
+main(@ARGV);
+
+sub main
+{
+    my ($smallest, $largest) = undef;
+    
+    print("---------- Tute 1.1 ----------\n\n");
+    
+    # If no command-line arguments passed, user is prompted for input
+    if(@ARGV)
+    {
+        # Iterates through all of arguments to check if they are numeric
+        foreach(@ARGV)
+        {
+            die("All arguments must be numeric\n") unless($_ =~ /^\d+$/);
+        }
+        
+        ($smallest, $largest) = small_large(@ARGV);
+    }
+    else
+    {
+        print("Enter Numbers: ");
+        
+        # uses a regex pattern (space) to split the user input
+        my @user_input = split(/\s+/, <>);
+        
+        # Iterates through user_input array and checks if all input is numeric
+        # using regex.
+        foreach(@user_input)
+        {
+            die("All input must be numeric\n") unless($_ =~ /^\d+$/);
+        }
+        
+        ($smallest, $largest) = small_large(@user_input);
+    }
+    
+    print("Smallest number: $smallest  | Largest Numbers: $largest \n\n\n");
+}
+
+sub small_large
+{
+    # returns the subroutine if no arguments passed
+    return if(!@_);
+    
+    # script ends with error if there are less than two numbers
+    die("Need two or more numbers") if(@_ < 2);
+    
+    # Initialises variables with the first subroutine argument
+    my ($largest, $smallest) = @_[0, 0];
+    
+    # Iterates through the list of arguments and assigns largest and smallest 
+    # number to variables
+    foreach(@_)
+    {
+        $largest = $_ if($_ > $largest);
+        $smallest = $_ if($_ < $smallest);
+    }
+    
+    # returns an array with two elements
+    return my @result = ($smallest, $largest);
+}
