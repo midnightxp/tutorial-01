@@ -19,13 +19,25 @@ if(scalar(@elements) < 2) {
 }
 
 ## Sort Array, get the first and last indexes to show 
-## smallest and largest element values
+## smallest and largest element values. Implicately calls
+## an iterator.
 my @sorted = sort(@elements);
 print("Smallest:  $sorted[0]\n");
 print("Largest: $sorted[scalar(@sorted)-1]\n");
 
-## Script Terminate
-exit;
 
+####################################################
+## Clear iterative method of achieving  
+## the same outcome.
+####################################################
+my $min = $elements[0];
+my $max = $elements[0];
 
+for(my $i = 0; $i < @elements; $i++) {
+	$min = $min > $elements[$i] ? $elements[$i] : $min;
+	$max = $max < $elements[$i] ? $elements[$i] : $max;
+}
+
+print("Smallest: $min\n");
+print("Largest: $max\n");
 
